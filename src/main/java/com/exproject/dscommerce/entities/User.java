@@ -3,6 +3,7 @@ package com.exproject.dscommerce.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_user")
@@ -16,6 +17,9 @@ public class User {
     private String phone;
     private LocalDate birthDate;
     private String passWord;
+
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
 
     public User() {
     }
@@ -75,5 +79,9 @@ public class User {
 
     public void setPassWord(String passWord) {
         this.passWord = passWord;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 }
